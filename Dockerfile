@@ -24,10 +24,12 @@ RUN CGO_ENABLED=0 go build \
 
 FROM alpine:3.19
 
-# Create non-root user for security
-RUN adduser -D app
-# Add user to dialout group for serial port access
-RUN addgroup -S dialout && adduser app dialout
+# # Create non-root user for security
+# RUN adduser -D app
+# # Add user to dialout group for serial port access
+# RUN addgroup app dialout
+
+# RUN adduser -D -G dialout app
 
 # Document which ports are intended to be published
 EXPOSE 8080
@@ -36,10 +38,10 @@ EXPOSE 8080
 COPY --from=builder /app/tmp/serial-api /app/serial-api
 
 # Set ownership of the application
-RUN chown app:app /app/serial-api
+# RUN chown app /app/serial-api
 
 # Switch to non-root user
-USER app
+# USER app
 
 # Run the application
 CMD ["/app/serial-api"]

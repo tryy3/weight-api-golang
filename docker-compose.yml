@@ -1,0 +1,12 @@
+services:
+  weight-api:
+    build: .
+    ports:
+      - "8080:8080"
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0"
+    # Add group permissions
+    group_add:
+      - dialout
+    # Optional: privileged mode if needed
+    privileged: true

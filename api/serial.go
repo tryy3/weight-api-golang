@@ -84,6 +84,7 @@ func (s *WeightSerial) Read(weightChan chan<- float64) {
 				}
 
 				weightChan <- weight
+				// fmt.Printf("Weight: %.2f g\n", weight)
 			}
 		}
 	}
